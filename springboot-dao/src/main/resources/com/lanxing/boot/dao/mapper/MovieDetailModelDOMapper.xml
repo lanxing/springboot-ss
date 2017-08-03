@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanxing.boot.dao.mapper.MovieDetailModelDOMapper">
+  <resultMap id="BaseResultMap" type="com.lanxing.boot.dao.model.MovieDetailModelDO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="stars" jdbcType="REAL" property="stars" />
+    <result column="runtime" jdbcType="VARCHAR" property="runtime" />
+    <result column="types" jdbcType="VARCHAR" property="types" />
+    <result column="directors" jdbcType="VARCHAR" property="directors" />
+    <result column="actors" jdbcType="VARCHAR" property="actors" />
+    <result column="language" jdbcType="VARCHAR" property="language" />
+    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="detailurl" jdbcType="VARCHAR" property="detailurl" />
+    <result column="IMDburl" jdbcType="VARCHAR" property="imdburl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, year, region, stars, runtime, types, directors, actors, language, duration, 
+    detailurl, IMDburl
+  </sql>
+  <select id="selectByExample" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from moviedetailmodel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from moviedetailmodel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from moviedetailmodel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDOExample">
+    delete from moviedetailmodel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDO">
+    insert into moviedetailmodel (id, name, year, 
+      region, stars, runtime, 
+      types, directors, actors, 
+      language, duration, detailurl, 
+      IMDburl)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, 
+      #{region,jdbcType=VARCHAR}, #{stars,jdbcType=REAL}, #{runtime,jdbcType=VARCHAR}, 
+      #{types,jdbcType=VARCHAR}, #{directors,jdbcType=VARCHAR}, #{actors,jdbcType=VARCHAR}, 
+      #{language,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER}, #{detailurl,jdbcType=VARCHAR}, 
+      #{imdburl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDO">
+    insert into moviedetailmodel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="stars != null">
+        stars,
+      </if>
+      <if test="runtime != null">
+        runtime,
+      </if>
+      <if test="types != null">
+        types,
+      </if>
+      <if test="directors != null">
+        directors,
+      </if>
+      <if test="actors != null">
+        actors,
+      </if>
+      <if test="language != null">
+        language,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="detailurl != null">
+        detailurl,
+      </if>
+      <if test="imdburl != null">
+        IMDburl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="stars != null">
+        #{stars,jdbcType=REAL},
+      </if>
+      <if test="runtime != null">
+        #{runtime,jdbcType=VARCHAR},
+      </if>
+      <if test="types != null">
+        #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="directors != null">
+        #{directors,jdbcType=VARCHAR},
+      </if>
+      <if test="actors != null">
+        #{actors,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="detailurl != null">
+        #{detailurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imdburl != null">
+        #{imdburl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDOExample" resultType="java.lang.Long">
+    select count(*) from moviedetailmodel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update moviedetailmodel
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.year != null">
+        year = #{record.year,jdbcType=INTEGER},
+      </if>
+      <if test="record.region != null">
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stars != null">
+        stars = #{record.stars,jdbcType=REAL},
+      </if>
+      <if test="record.runtime != null">
+        runtime = #{record.runtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.types != null">
+        types = #{record.types,jdbcType=VARCHAR},
+      </if>
+      <if test="record.directors != null">
+        directors = #{record.directors,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actors != null">
+        actors = #{record.actors,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language != null">
+        language = #{record.language,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duration != null">
+        duration = #{record.duration,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailurl != null">
+        detailurl = #{record.detailurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imdburl != null">
+        IMDburl = #{record.imdburl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update moviedetailmodel
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      year = #{record.year,jdbcType=INTEGER},
+      region = #{record.region,jdbcType=VARCHAR},
+      stars = #{record.stars,jdbcType=REAL},
+      runtime = #{record.runtime,jdbcType=VARCHAR},
+      types = #{record.types,jdbcType=VARCHAR},
+      directors = #{record.directors,jdbcType=VARCHAR},
+      actors = #{record.actors,jdbcType=VARCHAR},
+      language = #{record.language,jdbcType=VARCHAR},
+      duration = #{record.duration,jdbcType=INTEGER},
+      detailurl = #{record.detailurl,jdbcType=VARCHAR},
+      IMDburl = #{record.imdburl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDO">
+    update moviedetailmodel
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="stars != null">
+        stars = #{stars,jdbcType=REAL},
+      </if>
+      <if test="runtime != null">
+        runtime = #{runtime,jdbcType=VARCHAR},
+      </if>
+      <if test="types != null">
+        types = #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="directors != null">
+        directors = #{directors,jdbcType=VARCHAR},
+      </if>
+      <if test="actors != null">
+        actors = #{actors,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+      <if test="detailurl != null">
+        detailurl = #{detailurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imdburl != null">
+        IMDburl = #{imdburl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDO">
+    update moviedetailmodel
+    set name = #{name,jdbcType=VARCHAR},
+      year = #{year,jdbcType=INTEGER},
+      region = #{region,jdbcType=VARCHAR},
+      stars = #{stars,jdbcType=REAL},
+      runtime = #{runtime,jdbcType=VARCHAR},
+      types = #{types,jdbcType=VARCHAR},
+      directors = #{directors,jdbcType=VARCHAR},
+      actors = #{actors,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=INTEGER},
+      detailurl = #{detailurl,jdbcType=VARCHAR},
+      IMDburl = #{imdburl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.lanxing.boot.dao.model.MovieDetailModelDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from moviedetailmodel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

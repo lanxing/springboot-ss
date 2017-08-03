@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry
+            location="/Users/gaofan/.m2/repository/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar"/>
+    
+    <context id="my" targetRuntime="MyBatis3">
+        
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/movie"
+                        userId="root"
+                        password=""/>
+
+        <javaModelGenerator targetPackage="com.lanxing.boot.dao.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.lanxing.boot.dao.mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.lanxing.boot.dao.mapper"
+                             targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table tableName="moviedetailmodel" domainObjectName="MovieDetailModelDO"></table>
+        <!--<table schema="mall_product" tableName="poi_category_poi_spu_mapping" domainObjectName="PoiCategoryPoiSpuMappingPO"></table>-->
+        <!--<table schema="mall_product" tableName="poi_category" domainObjectName="PoiCategoryPO"></table>-->
+
+    </context>
+</generatorConfiguration>
