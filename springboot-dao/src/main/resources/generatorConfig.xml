@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+    <!--数据库驱动软件存放地址-->
     <classPathEntry
             location="/Users/gaofan/.m2/repository/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar"/>
     
@@ -16,22 +17,26 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
+        <!--数据库地址-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/movie"
                         userId="root"
                         password=""/>
 
+        <!--生成的model地址-->
         <javaModelGenerator targetPackage="com.lanxing.boot.dao.model"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
+        <!--对应的xml生成地址-->
         <sqlMapGenerator targetPackage="com.lanxing.boot.dao.mapper"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
+        <!--dao生成地址-->
         <javaClientGenerator targetPackage="com.lanxing.boot.dao.mapper"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
