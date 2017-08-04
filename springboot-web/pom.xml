@@ -10,4 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
     <artifactId>springboot-web</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lanxing.ss</groupId>
+            <artifactId>springboot-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lanxing.ss</groupId>
+            <artifactId>springboot-service</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

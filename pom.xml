@@ -43,17 +43,19 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--mybatis-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.11</version>
+            <version>1.3.0</version>
         </dependency>
 
+        <!--mysql-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.2</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -84,14 +86,30 @@
 
 
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.lanxing.ss</groupId>
+                <artifactId>springboot-dao</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lanxing.ss</groupId>
+                <artifactId>springboot-service</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.3.0.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
+                    <mainClass>com.lanxing.boot.web.Application</mainClass>
                 </configuration>
             </plugin>
             <plugin>

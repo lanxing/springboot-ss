@@ -9,6 +9,7 @@
 
     <artifactId>springboot-service</artifactId>
     <packaging>jar</packaging>
+    <version>1.0.0-SNAPSHOT</version>
 
     <name>springboot-service</name>
     <url>http://maven.apache.org</url>
